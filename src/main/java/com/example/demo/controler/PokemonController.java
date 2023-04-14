@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.modele.Pokemon;
+import com.example.demo.modele.Veterinaire;
 import com.example.demo.repositori.PokemonRepository;
+import com.example.demo.repositori.VeterinaireRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -31,6 +33,8 @@ public class PokemonController {
     public Pokemon create(@RequestBody Pokemon pokemon){
         return pokemonRepository.save(pokemon);
     }
+
+    
 
     @GetMapping("/read")
     public List<Pokemon> read(){
@@ -58,4 +62,7 @@ public class PokemonController {
 
          return "pokemon supprimé";
     }
+
+
+  
 }

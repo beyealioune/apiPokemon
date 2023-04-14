@@ -1,15 +1,17 @@
 package com.example.demo.modele;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,24 +24,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pokemon {
+public class Veterinaire {
     
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    
-    @Column(nullable = false)
     private String name;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "veterinaire")
+    private List<Pokemon> pokemons;
 
-    @Column(nullable = false)
-    private String type;
 
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name="veterinaire_id")
-    private Veterinaire veterinaire;
 }
